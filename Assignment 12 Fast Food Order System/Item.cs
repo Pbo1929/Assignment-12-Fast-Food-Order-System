@@ -17,7 +17,6 @@ namespace Assignment_12_Fast_Food_Order_System
             this.Price = Price;
         }
 
-
         public string GetItemCode()
         {
             return ItemCode;
