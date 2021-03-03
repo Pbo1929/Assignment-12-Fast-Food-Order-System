@@ -36,7 +36,7 @@ namespace Assignment_12_Fast_Food_Order_System
             return di[diCount];
         }
 
-        public double FindPrice(Item[] pl, string c)
+        public int FindPrice(Item[] pl, string c)
         {
             for (int i = 0; i < pl.Length; i++)
             {
