@@ -36,11 +36,13 @@ namespace Assignment_12_Fast_Food_Order_System
             int input2;
             while (i == false)
             {
-                
+                Item[] pl = new Item[100];
+
                 Console.WriteLine("");
                 Console.WriteLine("Type 1 to select food.");
-                Console.WriteLine("Type 2 checkout.");
-                Console.WriteLine("Type 3 to get bill.");
+                Console.WriteLine("Type 2 to select drink.");
+                Console.WriteLine("Type 3 checkout.");
+                Console.WriteLine("Type 4 to exit.");
                 input = Console.ReadLine();
                 input2 = Convert.ToInt32(input);
 
@@ -50,46 +52,86 @@ namespace Assignment_12_Fast_Food_Order_System
                 }
                 if (input2 == 2)
                 {
-                    CheckOut(PremLunch);
+                    SelectDrink(PremLunch);
+                }
+                if (input2 == 3)
+                {
+                    CheckOut(PremLunch, pl);
+                }
+                if (input2 == 4)
+                {
+                    break;
                 }
             }
         }
 
         public static void SelectFood(Payment PremLunch)
         {
+            string ReadFood = "";
+            string ReadFoodQuantity = "";
+            int ReadFoodQuantity2 = 0;
             string Read = "";
-            string Read2 = "";
-            int Read3 = 0;
-            string Read4 = "";
 
             bool Exit = false;
             while (Exit != true)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Enter Food Name:");
-                Read = Console.ReadLine();
-                PremLunch.GetFoodItem(1);
+                Console.WriteLine("Enter Food ID:");
+                ReadFood = Console.ReadLine();
                 Console.WriteLine("Enter Food Quantity:");
-                Read2 = Console.ReadLine();
-                Read3 = Convert.ToInt32(Read2);
+                ReadFoodQuantity = Console.ReadLine();
+                ReadFoodQuantity2 = Convert.ToInt32(ReadFoodQuantity2);
+
+                PremLunch.AddFoodItem(new FoodItem(ReadFood, ReadFoodQuantity2));
                 Console.WriteLine("Are you done? ( Y/N )");
-                Read4 = Console.ReadLine();
-                if (Read4 == "Y")
+                Read = Console.ReadLine();
+                if (Read == "Y")
                 {
                     Exit = true;
                 }
-                else
+                else if (Read == "N")
                 {
                     Exit = false;
                 }
-
             }
         }
 
-        public static void CheckOut(Payment PremLunch)
+        public static void SelectDrink(Payment PremLunch)
+        {
+            string ReadDrink = "";
+            string ReadDrinkQuantity = "";
+            int ReadDrinkQuantity2 = 0;
+            string Read = "";
+
+            bool Exit = false;
+            while (Exit != true)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Enter Drink ID:");
+                ReadDrink = Console.ReadLine();
+                Console.WriteLine("Enter Drink Quantity:");
+                ReadDrinkQuantity = Console.ReadLine();
+                ReadDrinkQuantity2 = Convert.ToInt32(ReadDrinkQuantity2);
+
+                PremLunch.AddDrinkItem(new DrinkItem(ReadDrink, ReadDrinkQuantity2));
+                Console.WriteLine("Are you done? ( Y/N )");
+                Read = Console.ReadLine();
+                if (Read == "Y")
+                {
+                    Exit = true;
+                }
+                else if (Read == "N")
+                {
+                    Exit = false;
+                }
+            }
+        }
+
+        public static void CheckOut(Payment PremLunch, Item[] pl)
         {
             Console.WriteLine("BILL:");
             Console.WriteLine(PremLunch.CalculateBill(pl));
         }
     }
 }
+
